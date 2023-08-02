@@ -1,0 +1,6 @@
+swu,3
+sw1,4
+swr,5
+swa,6
+sw3,7
+swy23,8
