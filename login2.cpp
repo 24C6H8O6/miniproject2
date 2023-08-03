@@ -81,11 +81,11 @@ void LOgin::totallogin(Login login, Login print, Login account)
 // 로그인 함수
 int LOgin::login2(Login login, Login print)
 {
-    cout << "┌⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼┐" << endl;
+    cout << "┌⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼┐" << endl;
     cout << "│                                          │" << endl;
-    cout << "│             Login Page             │" << endl;
+    cout << "│                 Login Page               │" << endl;
     cout << "│                                          │" << endl;
-    cout << "└⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼┘" << endl;
+    cout << "└⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼┘" << endl;
     cout << "============================================" << endl;
     int num = 0;
     while (!num)
@@ -538,7 +538,7 @@ void Ticketing::input()
     arrive_depart();
     normal_charge = 15600 * gap;
     special_charge = 21830 * gap;
-    cout << "번호   열차   출발지  도착지  출발시간  도착예정시간  일반실  특실" << endl;
+    cout << "번호   열차   출발지  도착지  출발시간  도착예정시간  일반실    특실" << endl;
     for (int i = 0; i < 10; i++)
     {
         cout << i << "\t"
@@ -547,8 +547,8 @@ void Ticketing::input()
              << "\t"
              << arrive
              << "\t" << (new_curr_hour + 2 * i) % 24
-             << "시\t" << (new_curr_hour + gap + 2 * i) % 24 << "시\t    " << normal_charge
-             << "원\t " << special_charge << "원" << endl;
+             << "시\t" << (new_curr_hour + gap + 2 * i) % 24 << "시\t      " << normal_charge
+             << "원\t" << special_charge << "원" << endl;
     }
 
     // cout << "출발시간 입력";
@@ -659,6 +659,7 @@ int Ticketing::choice_seat()
                 cout << "자리 선택이 완료되었습니다" << endl;
                 flag = 1;
                 flag2 = 1;
+                system("clear");
             }
             else if (munja == 'n')
             {
@@ -763,6 +764,8 @@ void Ticketing::payment()
         {
             cout << dif_money << "원 결재가 완료되었습니다" << endl;
             ticket1 = 1;
+            sleep(2);
+            system("clear");
             break;
         }
         else
@@ -779,6 +782,8 @@ void Ticketing::payment()
          << arrive << (curr_hour + 2) << ":00" << endl;
     cout << "결재금액 : " << charge << endl;
     cout << "=============================================" << endl;
+    sleep(2);
+    system("clear");
 }
 // 2-4. 승차권
 void Ticketing::tickets()
@@ -792,6 +797,8 @@ void Ticketing::tickets()
     cout << "            좌석 : " << charge_num << " " << row << "행 " << column << "열" << endl;
     cout << "             가격 : " << charge << endl;
     cout << "=============================================" << endl;
+    sleep(5);
+    system("clear");
 }
 
 int Ticketing::ticket_confirm()

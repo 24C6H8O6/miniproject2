@@ -61,6 +61,8 @@ int main()
     cin >> num4;
     if (num4 == "y")
     {
+        sleep(2);
+        system("clear");
         aa.tickets();
         sleep(10);
     }
