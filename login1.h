@@ -43,6 +43,10 @@ public:
     int findid(Login account, Login print);
     int findpw(Login account, Login print);
     string receiveid();
+    void print_account2();
+    void print_bokrail();
+    void choice_login();
+    void totallogin(Login login, Login print, Login account);
 };
 
 // 예매 클래스
@@ -69,6 +73,7 @@ private:
     string column;               // 열
     int column2 = 0;             // 열을 새로운 변수로 지정
     int flag3;                   // while루프 관련 변수
+    int ticket1;                 // 승차권 확인 변수
 
 public:
     void getloginid(LOgin &t);
@@ -86,6 +91,7 @@ public:
     void tickets();
     void arrive_depart();
     void normal_spec();
+    int ticket_confirm();
 };
 
 #endif

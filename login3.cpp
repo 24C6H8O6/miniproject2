@@ -14,10 +14,13 @@ using namespace std;
 
 int main()
 {
+    int ticketflag = 0;
+    ;
     Ticketing aa;
     LOgin mylogin;
     int num = 0;
     int num2 = 0;
+    string num4;
     // 유일한 번호 변수
     int unique;
     // 로그인 시 필요한 값
@@ -29,30 +32,42 @@ int main()
     // 회원가입 구조체
     Login account;
     // 회원가입 화면
-    cout << "           << 주 의 사 항>>" << endl;
-    cout << "아이디, 이메일, 폰 번호 중 하나라도 중복되면" << endl;
-    cout << "처음부터 다시 입력해야하니 신중을 기하십시오" << endl;
+    mylogin.print_bokrail();
 
-    // 회원가입
-    mylogin.account2(account, print);
+    mylogin.totallogin(login, print, account);
 
     // system("clear");
 
-    // 아이디 찾기
-    mylogin.findid(account, print);
-    mylogin.findpw(account, print);
     // 로그인
     // C++에서 파일에서 값들을 불러오어 컴마(,)로 구분한 후 구조체에 저장하려면
     // std::ifstream 클래스와 std::getline 함수를 사용할 수 있다.
-    mylogin.login2(login, print);
-    // cout << account.id << endl;
-    aa.getloginid(mylogin);
-    aa.input();
-    int b = aa.get_curr_hour();
-    cout << b << endl;
-    system("cls");
-    aa.seats();
-    aa.payment();
-    aa.tickets();
+
+    // 보류
+    // aa.getloginid(mylogin);
+
+    while (!ticketflag)
+    {
+        aa.input();
+        int b = aa.get_curr_hour();
+        // cout << b << endl;
+        // system("cls");
+        // system("clear");
+        aa.seats();
+        aa.payment();
+        aa.tickets();
+        ticketflag = aa.ticket_confirm();
+    }
+    cout << "승차권을 다시 확인하시겠습니까?(y/n) ";
+    cin >> num4;
+    if (num4 == "y")
+    {
+        aa.tickets();
+        sleep(10);
+    }
+    else if (num4 == "n")
+    {
+        cout << "ok!!" << endl;
+    }
+
     return 0;
 }
