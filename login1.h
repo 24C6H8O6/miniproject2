@@ -1,3 +1,4 @@
+// login1.h(헤더파일)
 #ifndef LOGIN1_H_
 #define LOGIN1_H_
 
@@ -95,3 +96,4 @@ public:
 };
 
 #endif
+// login2.cpp(함수만 있는 cpp)

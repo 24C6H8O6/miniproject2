@@ -1,3 +1,5 @@
+// login2.cpp(함수만 있는 cpp)
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <fstream>
@@ -27,11 +29,12 @@ void LOgin::print_bokrail()
 void LOgin::choice_login()
 {
     cout << "============================================" << endl;
-    cout << "         << 로그인 / 회원가입 >>" << endl;
     cout << endl;
     cout << "        원하시는 기능응 선택하세요" << endl;
     cout << endl;
-    cout << "1.로그인 2.회원가입 3.아이디찾기 4.비밀번호찾기" << endl;
+    cout << "   1.로그인 2.회원가입 3.아이디찾기" << endl;
+    cout << "  4.비밀번호찾기 5.승차권조회 6.종료" << endl;
+    cout << endl;
     cout << "============================================" << endl;
 }
 void LOgin::print_account2()
@@ -46,6 +49,8 @@ void LOgin::totallogin(Login login, Login print, Login account)
 {
     // 로그인,회원가입,찾기 기능 실행 시 필요
     int num3;
+    Ticketing a;
+
     while (1)
     {
         num3 = 0;
@@ -76,6 +81,15 @@ void LOgin::totallogin(Login login, Login print, Login account)
             // 비밀번호 찾기
             findpw(account, print);
         }
+        else if (num3 == 5)
+        {
+            // 승차권 확인
+            a.tickets();
+        }
+        else if (num3 == 6)
+        {
+            exit(0);
+        }
     }
 }
 // 로그인 함수
@@ -90,7 +104,7 @@ int LOgin::login2(Login login, Login print)
     int num = 0;
     while (!num)
     {
-        ifstream fin("/home/lms116/다운로드/miniproject2/member.txt", ios_base::in);
+        ifstream fin("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::in);
         if (!fin.is_open())
         {
             cerr << "안 열림" << endl;
@@ -140,7 +154,7 @@ int LOgin::account2(Login account, Login print)
         int num4 = 0;
         // 유일한 번호 변수
         account.unique = 0;
-        ifstream fin("/home/lms116/다운로드/miniproject2/member.txt", ios_base::in);
+        ifstream fin("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::in);
         if (!fin.is_open())
         {
             cerr << "안 열림" << endl;
@@ -260,7 +274,7 @@ int LOgin::account2(Login account, Login print)
     // 회원번호 파일
     LOgin::unique(account);
 
-    ofstream fout("/home/lms116/다운로드/miniproject2/member.txt", ios_base::app);
+    ofstream fout("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::app);
     if (fout)
     {
         fout << account.id << "," << account.pw << "," << account.email << ","
@@ -277,7 +291,7 @@ int LOgin::account2(Login account, Login print)
 // 회원 번호 함수
 void LOgin::unique(Login &account)
 {
-    ofstream fout2("/home/lms116/다운로드/miniproject2/unique.txt", ios_base::app);
+    ofstream fout2("C:/Users/user/OneDrive/바탕 화면/test/230803/unique.txt", ios_base::app);
     fout2 << account.id << "," << account.unique << endl;
     cout << "회원번호 " << account.unique << "가 부여되었습니다" << endl;
     fout2.close();
@@ -290,7 +304,7 @@ int LOgin::findid(Login account, Login print)
     {
         int num3 = 0;
         int num4 = 0;
-        ifstream fin("/home/lms116/다운로드/miniproject2/member.txt", ios_base::in);
+        ifstream fin("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::in);
         if (!fin.is_open())
         {
             cerr << "안 열림" << endl;
@@ -328,7 +342,7 @@ int LOgin::findpw(Login account, Login print)
     {
         int num3 = 0;
         int num4 = 0;
-        ifstream fin("/home/lms116/다운로드/miniproject2/member.txt", ios_base::in);
+        ifstream fin("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::in);
         if (!fin.is_open())
         {
             cerr << "안 열림" << endl;
@@ -502,7 +516,7 @@ void Ticketing::input()
     {
 
         cout << "출발지 선택 >> ";
-        cin >> depart;
+        cin >> depart; // 고쳐
         if (depart == "1" || depart == "2" || depart == "3" || depart == "4" || depart == "5" || depart == "6")
         {
             break;
@@ -795,7 +809,7 @@ void Ticketing::tickets()
     cout << "            " << depart << "발 " << arrive << "행 열차" << endl;
     cout << "            출발시간 : " << curr_hour << "시" << endl;
     cout << "            좌석 : " << charge_num << " " << row << "행 " << column << "열" << endl;
-    cout << "             가격 : " << charge << endl;
+    cout << "            가격 : " << charge << "원" << endl;
     cout << "=============================================" << endl;
     sleep(5);
     system("clear");
