@@ -15,10 +15,11 @@
 using namespace std;
 
 // 로그인 클래스 내 함수
-
+// 초기 출력문
 void LOgin::print_bokrail()
 {
-
+    sleep(3);
+    system("clear");
     cout << "┌⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼┐" << endl;
     cout << "│            Welcome  to            │" << endl;
     cout << "│           Let's BokRail           │" << endl;
@@ -26,6 +27,7 @@ void LOgin::print_bokrail()
     sleep(3);
     system("clear");
 }
+// 항목 선택 출력문
 void LOgin::choice_login()
 {
     cout << "============================================" << endl;
@@ -37,6 +39,7 @@ void LOgin::choice_login()
     cout << endl;
     cout << "============================================" << endl;
 }
+// 회원가입 주의사항 출력문
 void LOgin::print_account2()
 {
     cout << "============================================" << endl;
@@ -45,6 +48,7 @@ void LOgin::print_account2()
     cout << "처음부터 다시 입력해야하니 신중을 기하십시오" << endl;
     cout << "============================================" << endl;
 }
+// 로그인 항목 선택 함수
 void LOgin::totallogin(Login login, Login print, Login account)
 {
     // 로그인,회원가입,찾기 기능 실행 시 필요
@@ -83,34 +87,48 @@ void LOgin::totallogin(Login login, Login print, Login account)
         }
         else if (num3 == 5)
         {
-            // 승차권 확인
-            a.tickets();
+            if (flag4 == 1)
+            { // 승차권 확인
+                a.tickets();
+            }
+            else
+            {
+                cout << "승차권을 확인할 수 없습니다." << endl;
+            }
         }
         else if (num3 == 6)
         {
             exit(0);
         }
+        else
+        {
+            cout << "잘못입력됨" << endl;
+        }
+        sleep(1);
+        system("clear");
     }
 }
 // 로그인 함수
 int LOgin::login2(Login login, Login print)
 {
-    cout << "┌⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼┐" << endl;
-    cout << "│                                          │" << endl;
-    cout << "│                 Login Page               │" << endl;
-    cout << "│                                          │" << endl;
-    cout << "└⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼┘" << endl;
-    cout << "============================================" << endl;
+
     int num = 0;
     while (!num)
     {
-        ifstream fin("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::in);
+
+        ifstream fin("/home/lms116/다운로드/miniproject2/test1/member.txt", ios_base::in);
         if (!fin.is_open())
         {
             cerr << "안 열림" << endl;
             return 1;
         }
         cin.ignore(256, '\n');
+        cout << "┌⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼┐" << endl;
+        cout << "│                                          │" << endl;
+        cout << "│                 Login Page               │" << endl;
+        cout << "│                                          │" << endl;
+        cout << "└⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼┘" << endl;
+        cout << "============================================" << endl;
         cout << "ID를 입력하세요 >> ";
         getline(cin, login.id);
 
@@ -134,27 +152,39 @@ int LOgin::login2(Login login, Login print)
                 cout << "<< 로그인 성공 >>" << endl;
                 ID = login.id;
                 // cout << ID << endl;
+                flag4 = 1;
                 num = 1;
+                sleep(1);
+                system("clear");
                 break;
             }
         }
         if (num == 0)
+        {
             cout << "로그인실패, 다시 입력 요망!!" << endl;
+            sleep(1);
+            system("clear");
+            continue;
+        }
+
         fin.close();
     }
 }
 // 회원가입 함수
 int LOgin::account2(Login account, Login print)
 {
-    print_account2();
+    sleep(1);
     int num2 = 0;
     while (!num2)
     {
+        print_account2();
         int num3 = 0;
         int num4 = 0;
+        // 문제 생기면 제거
+        account.id = "0";
         // 유일한 번호 변수
         account.unique = 0;
-        ifstream fin("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::in);
+        ifstream fin("/home/lms116/다운로드/miniproject2/test1/member.txt", ios_base::in);
         if (!fin.is_open())
         {
             cerr << "안 열림" << endl;
@@ -189,9 +219,11 @@ int LOgin::account2(Login account, Login print)
             cout << "사용가능한 아이디" << endl;
             num2 = 1;
         }
-        else
+        else if (num3 == 1)
         {
             cout << "아이디 중복, 다시 입력 요망!!" << endl;
+            sleep(1);
+            system("clear");
             continue;
         }
 
@@ -231,6 +263,8 @@ int LOgin::account2(Login account, Login print)
         else
         {
             cout << "이메일 중복, 다시 입력 요망!!" << endl;
+            sleep(1);
+            system("clear");
             continue;
         }
 
@@ -265,6 +299,8 @@ int LOgin::account2(Login account, Login print)
         else
         {
             cout << "휴대폰 번호 중복, 다시 입력 요망!!" << endl;
+            sleep(1);
+            system("clear");
             continue;
         }
 
@@ -274,7 +310,7 @@ int LOgin::account2(Login account, Login print)
     // 회원번호 파일
     LOgin::unique(account);
 
-    ofstream fout("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::app);
+    ofstream fout("/home/lms116/다운로드/miniproject2/test1/member.txt", ios_base::app);
     if (fout)
     {
         fout << account.id << "," << account.pw << "," << account.email << ","
@@ -291,9 +327,10 @@ int LOgin::account2(Login account, Login print)
 // 회원 번호 함수
 void LOgin::unique(Login &account)
 {
-    ofstream fout2("C:/Users/user/OneDrive/바탕 화면/test/230803/unique.txt", ios_base::app);
+    ofstream fout2("/home/lms116/다운로드/miniproject2/test1/unique.txt", ios_base::app);
     fout2 << account.id << "," << account.unique << endl;
-    cout << "회원번호 " << account.unique << "가 부여되었습니다" << endl;
+    cout << "회원번호 " << account.unique << "이(가) 부여되었습니다" << endl;
+    sleep(1);
     fout2.close();
 }
 // 아이디 찾기 함수
@@ -302,9 +339,9 @@ int LOgin::findid(Login account, Login print)
     int num5 = 0;
     while (!num5)
     {
-        int num3 = 0;
+        // int num3 = 0;
         int num4 = 0;
-        ifstream fin("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::in);
+        ifstream fin("/home/lms116/다운로드/miniproject2/test1/member.txt", ios_base::in);
         if (!fin.is_open())
         {
             cerr << "안 열림" << endl;
@@ -315,7 +352,7 @@ int LOgin::findid(Login account, Login print)
         string line2;
         while (getline(fin, line2))
         {
-            account.unique += 1;
+            // account.unique += 1;
             istringstream iss(line2);
             getline(iss, print.id, ',');
             getline(iss, print.pw, ',');
@@ -332,44 +369,48 @@ int LOgin::findid(Login account, Login print)
                 num4 = 0;
             }
         }
+        sleep(1);
+        system("clear");
     }
 }
 // 비밀번호 찾기 함수
 int LOgin::findpw(Login account, Login print)
 {
-    int num5 = 0;
-    while (!num5)
+    int num6 = 0;
+    while (!num6)
     {
-        int num3 = 0;
-        int num4 = 0;
-        ifstream fin("C:/Users/user/OneDrive/바탕 화면/test/230803/member.txt", ios_base::in);
+        // int num3 = 0;
+        int num7 = 0;
+        ifstream fin("/home/lms116/다운로드/miniproject2/test1/member.txt", ios_base::in);
         if (!fin.is_open())
         {
             cerr << "안 열림" << endl;
             return 1;
         }
-        cout << "아이디를 입력하세요 >> ";
-        getline(cin, account.id);
-        string line2;
-        while (getline(fin, line2))
+        cout << "이메일을 입력하세요 >> ";
+        getline(cin, account.email);
+        string line3;
+        while (getline(fin, line3))
         {
-            account.unique += 1;
-            istringstream iss(line2);
-            getline(iss, print.id, ',');
-            getline(iss, print.pw, ',');
-            getline(iss, print.email, ',');
-            getline(iss, print.phone, ',');
-            if (account.id == print.id)
+            // account.unique += 1;
+            istringstream iss2(line3);
+            getline(iss2, print.id, ',');
+            getline(iss2, print.pw, ',');
+            getline(iss2, print.email, ',');
+            getline(iss2, print.phone, ',');
+            if (account.email == print.email)
             {
                 cout << "비밀번호는 " << print.pw << endl;
-                num5 = 1;
+                num6 = 1;
                 break;
             }
             else
             {
-                num4 = 0;
+                num7 = 0;
             }
         }
+        sleep(1);
+        system("clear");
     }
 }
 
@@ -381,18 +422,12 @@ void Ticketing::times()
     // 현재시간
     struct tm *curr_tm;
     time_t curr_time = time(nullptr);
-
     curr_tm = localtime(&curr_time);
-
-    // int curr_year = curr_tm.tm_year + 1900;
-    // int curr_month = curr_tm.tm_mon + 1;
-    // curr_day = curr_tm.tm_mday;
     curr_year = curr_tm->tm_year;
     curr_month = curr_tm->tm_mon;
     curr_day = curr_tm->tm_mday;
     curr_hour = curr_tm->tm_hour;
     curr_minute = curr_tm->tm_min;
-    // int curr_second = curr_tm.tm_sec;
     cout << (curr_year - 100) << "년 " << curr_month << "월 " << curr_day << "일" << endl;
     cout << "현재시간 " << curr_hour << ":" << curr_minute << endl;
     new_curr_hour = curr_hour + 1;
@@ -401,7 +436,17 @@ void Ticketing::times()
 // 2-1-2. 출발지에 원 도시 지정 함수
 void Ticketing::arrive_depart()
 {
-
+    // for (int i = 0; i <= 5; i++)
+    // {
+    //     if (depart1[i] == stoi(depart))
+    //     {
+    //         depart = depart2[i];
+    //     }
+    //     if (depart1[i] == stoi(arrive))
+    //     {
+    //         arrive = depart2[i];
+    //     }
+    // }
     if (depart == "1")
     {
         depart = "서울";
@@ -506,10 +551,7 @@ void Ticketing::input()
     }
     sleep(1);
     system("clear");
-    // 출발지, 도착지 출력문 넣을 것
-    // 서울,대구,대전,광주,울산,부산
-    // 출발지 배열(벡터) 랜덤
-    // 도착지도 마찬가지
+
     cout << "출발가능지역" << endl;
     cout << "1.서울,2.대전,3.광주,4.대구,5.울산,6.부산" << endl;
     while (1)
@@ -550,6 +592,8 @@ void Ticketing::input()
         gap = 4;
     }
     arrive_depart();
+    sleep(1);
+    system("clear");
     normal_charge = 15600 * gap;
     special_charge = 21830 * gap;
     cout << "번호   열차   출발지  도착지  출발시간  도착예정시간  일반실    특실" << endl;
@@ -565,43 +609,6 @@ void Ticketing::input()
              << "원\t" << special_charge << "원" << endl;
     }
 
-    // cout << "출발시간 입력";
-    // cin >> arrive;
-    // 광주 -> 서울울
-    // if ((depart == "4") && (arrive == "1"))
-    // {
-    //     int gap = abs(stoi(depart) - stoi(arrive));
-    //     if (gap == 5)
-    //     {
-    //         gap = 4;
-    //     }
-    //     arrive_depart();
-    //     normal_charge = 15600 * gap;
-    //     special_charge = 21830 * gap;
-    //     cout << "번호   열차   출발지  도착지  출발시간  도착예정시간  일반실  특실" << endl;
-    //     for (int i = 0; i < 10; i++)
-    //     {
-    //         cout << i << "\t"
-    //              << "ktx   "
-    //              << depart
-    //              << "\t"
-    //              << arrive
-    //              << "\t" << (new_curr_hour + 2 * i) % 24
-    //              << "시\t" << (new_curr_hour + gap + 2 * i) % 24 << "시\t    " << normal_charge
-    //              << "원\t " << special_charge << "원" << endl;
-    //     }
-    // }
-    // else if ((depart == "4") && (arrive == "3"))
-    // {
-    //     arrive_depart();
-    //     cout << "번호 출발지  도착지  출발시간  도착예정시간" << endl;
-    //     for (int i = 0; i < 10; i++)
-    //     {
-    //         cout << i << "     " << depart << "    " << arrive << "     " << (new_curr_hour + 2 * i) % 24
-    //              << "시      " << (new_curr_hour + 1 + 2 * i) % 24 << "시 " << endl;
-    //     }
-    // }
-    // arrive_depart();
     cout << "번호를 선택하세요" << endl;
     cin >> num;
     curr_hour = (curr_hour + (2 * num) + 1) % 24;
@@ -691,13 +698,13 @@ int Ticketing::choice_seat()
     flag3 = 1;
     return flag3;
 }
+
 // 2-2. 2차원 벡터로 좌석 생성
 void Ticketing::seats()
 {
 
     int num1;
     int num2;
-    // vector<vector<string>> seat(14, vector<string>(6, "0"));
     seat = vector<vector<string>>(14, vector<string>(6, "0"));
     // 2차원 벡터 초기화
     seat.resize(14); // 행 크기 지정
@@ -730,8 +737,9 @@ void Ticketing::seats()
         }
         seat[num1][num2] = "■";
     }
-    flag3 = 0;
+
     // 2차원 벡터 출력 + 좌석 선택 함수(do~while문)
+    flag3 = 0;
     do
     {
         cout << "No. A B   C D" << endl;
@@ -755,12 +763,8 @@ void Ticketing::seats()
             flag3 = choice_seat();
             seat[row - 1][column2] = "■";
         }
-        cout << "행 : " << row << ", 열 : " << column << endl;
         flag3 += 1;
     } while (flag3 != 3);
-    // cout << depart << " " << arrive << " 출발시간 " << curr_hour << "시 "
-    //      << row << "행" << column << "열" << endl;
-    // cout << "야호!!!" << endl;
 }
 // 2-3. 결재
 void Ticketing::payment()
@@ -824,12 +828,4 @@ int Ticketing::ticket_confirm()
 int Ticketing::get_curr_hour() const
 {
     return curr_hour;
-}
-// 로그인 클래스의 멤버를 가져오는 함수(보류)
-void Ticketing::getloginid(LOgin &t)
-{
-    // LOgin mylogin;
-    // var = mylogin.receiveid();
-    // cout << var << endl;
-    // cout << t.ID << endl;
 }

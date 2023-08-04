@@ -52,14 +52,15 @@ int main()
             // aa.tickets();
             ticketflag = aa.ticket_confirm();
         }
-        cout << "승차권을 다시 확인하시겠습니까?(y/n) ";
+        cout << "승차권을 확인하시겠습니까?(y/n) ";
         cin >> num4;
         if (num4 == "y")
         {
             sleep(2);
             system("clear");
             aa.tickets();
-            sleep(10);
+            // 감사합니다 페이지
+            // sleep(10);
         }
         else if (num4 == "n")
         {
